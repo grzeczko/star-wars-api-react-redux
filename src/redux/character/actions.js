@@ -25,9 +25,6 @@ export function getCharacterProfile(id) {
       .then(profile => {
         dispatch(setCharacterProfile(profile));
         dispatch(getCharacterMovies(profile.films));
-      })
-      .catch((error) => {
-        console.log(error)
       });
 }
 

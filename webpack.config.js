@@ -16,7 +16,7 @@ module.exports = {
   },
   output: {
     path: __dirname + '/dist',
-    publicPath: '/star-wars/',
+    publicPath: '/star-wars-api-react-redux/',
     filename: 'bundle.js'
   },
   plugins: [
