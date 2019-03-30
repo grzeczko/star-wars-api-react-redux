@@ -9,9 +9,9 @@ const CharacterList = ({ characters, setCharacter }) =>
   <div id='character-list' className='col-md-6'>
     <h1>Characters</h1>
     <ul>
-      {characters.map((c, i) =>
+      {characters.map((c) =>
         <li
-          onClick={setCharacter(i + 1)}
+          onClick={setCharacter(c.url)}
           key={c.name}
         >
           {c.name}
@@ -25,10 +25,10 @@ const mapStateToProps = ({ characters }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setCharacter(id) {
+  setCharacter(url) {
     return () => {
-      dispatch(setCurrentCharacter(id));
-      dispatch(getCharacterProfile(id));
+      dispatch(setCurrentCharacter(url));
+      dispatch(getCharacterProfile(url));
     };
   },
 });

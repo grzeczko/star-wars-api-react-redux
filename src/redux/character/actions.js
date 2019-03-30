@@ -3,11 +3,13 @@ import { API_URL } from '../../constants';
 export const SET_CURRENT_CHARACTER = 'SET_CURRENT_CHARACTER';
 export const SET_CHARACTER_PROFILE = 'SET_CHARACTER_PROFILE';
 export const SET_CHARACTER_MOVIES = 'SET_CHARACTER_MOVIES';
+export const FETCH_RESOURCES_FAIL = 'FETCH_RESOURCES_FAIL';
+export const FETCH_RESOURCES_SUCCESS = 'FETCH_RESOURCES_SUCCESS';
 
-export function setCurrentCharacter(id) {
+export function setCurrentCharacter(url) {
   return {
     type: SET_CURRENT_CHARACTER,
-    id,
+    url,
   };
 }
 
@@ -18,13 +20,16 @@ export function setCharacterProfile(profile) {
   };
 }
 
-export function getCharacterProfile(id) {
+export function getCharacterProfile(url) {
   return dispatch =>
-    fetch(`${API_URL}/people/${id}`)
+    fetch(`${url}`)
       .then(res => res.json())
       .then(profile => {
         dispatch(setCharacterProfile(profile));
         dispatch(getCharacterMovies(profile.films));
+      })
+      .catch(err => {
+        dispatch(fetchError(FETCH_RESOURCES_FAIL));
       });
 }
 
@@ -36,12 +41,20 @@ export function setCharacterMovies(movies) {
 }
 
 export function getCharacterMovies(moviesUrls) {
+
   return dispatch =>
     Promise.all(moviesUrls.map(movieUrl =>
       fetch(movieUrl)
         .then(res => res.json())
     ))
-    .then(movies =>
+    .then(movies => {
+      dispatch(fetchError(FETCH_RESOURCES_SUCCESS));
       dispatch(setCharacterMovies(movies))
-    );
+    });
+}
+
+export function fetchError(type) {
+  return {
+    type: type
+  };
 }

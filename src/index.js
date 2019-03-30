@@ -17,7 +17,6 @@ const store = createStore(reducer, composeEnhancers(
 
 // Get all characters
 store.dispatch(getCharacters());
-console.log(store.getState().characters);
 
 // Create app
 const container = document.querySelector('#app');
