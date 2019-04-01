@@ -1,4 +1,5 @@
 import React from 'react';
+import Moment from 'react-moment';
 import { connect } from 'react-redux';
 
 const CharacterMovies = ({ movies, errors }) =>
@@ -7,13 +8,11 @@ const CharacterMovies = ({ movies, errors }) =>
     {!errors ? (
       <ul className='movies-list'>
         {movies.map(movie => {
-          const dateArray = movie.release_date.split('-');
-
-          return <li key={movie.title}>{movie.title} ({dateArray[0]})</li>;
+          return <li key={movie.title}>{movie.title} (<Moment date={movie.release_date} format="dddd, LL" />)</li>;
         })}
       </ul>
     ) : (
-      <div className='error-message'>
+      <div className='error-message alert alert-danger'>
         {errors}
       </div>
     )}

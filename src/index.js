@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import reducer from './redux';
 import { getCharacters } from './redux/characters/actions';
+import './sass/app.scss';
 
 import StarWars from './js/components/StarWars'
 

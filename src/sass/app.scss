@@ -1,0 +1,43 @@
+@import "~bootstrap/scss/bootstrap";
+
+body {
+    background-color: #000;
+    overflow: hidden;
+}
+
+div#character-list {
+    ul {
+        li {
+            color: gold;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+}
+
+div#character-movies {
+    ul {
+        li {
+            color: white;
+        }
+    }
+}
+
+.chewbacca {
+  position: absolute;
+  top: 0;
+  right: 0;
+  overflow: hidden;
+  animation: 10s slide-up;
+  margin-top: 0%;
+}
+
+@keyframes slide-up {
+  from {
+    margin-top: 100%;
+  }
+
+  to {
+    margin-top: 0%;
+  }
+}
